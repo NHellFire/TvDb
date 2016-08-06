@@ -397,6 +397,8 @@ class Client
         $dataPath = "zip://".$zipName."#".$file;
         $data = file_get_contents($dataPath);
 
+        @unlink($zipName);
+
         $simpleXml = $this->getXml($data);
 
         return $simpleXml;
