@@ -108,6 +108,8 @@ class Episode
         $this->id = (int)$data->id;
         $this->number = (int)$data->EpisodeNumber;
         $this->season = (int)$data->SeasonNumber;
+        $this->dvd_number = ! empty($data->DVD_episodenumber) ? (int)$data->DVD_episodenumber : (int)$data->EpisodeNumber;
+        $this->dvd_season = ! empty($data->DVD_season) ? (int)$data->DVD_season : (int)$data->SeasonNumber;
         $this->directors = (array)Client::removeEmptyIndexes(explode('|', (string)$data->Director));
         $this->name = (string)$data->EpisodeName;
         $this->firstAired = (string)$data->FirstAired !== '' ? new \DateTime((string)$data->FirstAired) : null;
