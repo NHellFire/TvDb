@@ -52,7 +52,10 @@ class FilesystemCache implements Cache
             mkdir($dirname, 0777, true);
         }
 
-        file_put_contents($path, $content);
+        $written = file_put_contents($path, $content);
+		if ($written != strlen($content)) {
+			unlink($path);
+		}
         $this->setDate($resource, $date);
     }
 
